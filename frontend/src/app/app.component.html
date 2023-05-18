@@ -1,0 +1,307 @@
+<style>
+  :host {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 14px;
+    color: #333;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 8px 0;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  .spacer {
+    flex: 1;
+  }
+
+  .toolbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    background-color: #1976d2;
+    color: white;
+    font-weight: 600;
+  }
+
+  .toolbar img {
+    margin: 0 16px;
+  }
+
+  .toolbar #twitter-logo {
+    height: 40px;
+    margin: 0 8px;
+  }
+
+  .toolbar #youtube-logo {
+    height: 40px;
+    margin: 0 16px;
+  }
+
+  .toolbar #twitter-logo:hover,
+  .toolbar #youtube-logo:hover {
+    opacity: 0.8;
+  }
+
+  .content {
+    display: flex;
+      margin: 82px auto 32px;
+      padding: 0 16px;
+      flex-direction: column;
+  }
+
+  svg.material-icons {
+    height: 24px;
+    width: auto;
+  }
+
+  svg.material-icons:not(:last-child) {
+    margin-right: 8px;
+  }
+
+  .card svg.material-icons path {
+    fill: #888;
+  }
+
+  .card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 16px;
+  }
+
+  .card {
+    all: unset;
+    border-radius: 4px;
+    border: 1px solid #eee;
+    background-color: #fafafa;
+    height: 40px;
+    width: 200px;
+    margin: 0 8px 16px;
+    padding: 16px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s ease-in-out;
+    line-height: 24px;
+  }
+
+  .card-container .card:not(:last-child) {
+    margin-right: 0;
+  }
+
+  .card.card-small {
+    height: 16px;
+    width: 168px;
+  }
+
+  .card-container .card:not(.highlight-card) {
+    cursor: pointer;
+  }
+
+  .card-container .card:not(.highlight-card):hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
+  }
+
+  .card-container .card:not(.highlight-card):hover .material-icons path {
+    fill: rgb(105, 103, 103);
+  }
+
+  .card.highlight-card {
+    background-color: #1976d2;
+    color: white;
+    font-weight: 600;
+    border: none;
+    width: auto;
+    min-width: 30%;
+    position: relative;
+  }
+
+  .card.card.highlight-card span {
+    margin-left: 60px;
+  }
+
+  svg#rocket {
+    width: 80px;
+    position: absolute;
+    left: -10px;
+    top: -24px;
+  }
+
+  svg#rocket-smoke {
+    height: calc(100vh - 95px);
+    position: absolute;
+    top: 10px;
+    right: 180px;
+    z-index: -10;
+  }
+
+  a,
+  a:visited,
+  a:hover {
+    color: #1976d2;
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: #125699;
+  }
+
+  .terminal {
+    position: relative;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 6px;
+    padding-top: 45px;
+    margin-top: 8px;
+    overflow: hidden;
+    background-color: rgb(15, 15, 16);
+  }
+
+  .terminal::before {
+    content: "\2022 \2022 \2022";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 4px;
+    background: rgb(58, 58, 58);
+    color: #c2c3c4;
+    width: 100%;
+    font-size: 2rem;
+    line-height: 0;
+    padding: 14px 0;
+    text-indent: 4px;
+  }
+
+  .terminal pre {
+    font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace;
+    color: white;
+    padding: 0 1rem 1rem;
+    margin: 0;
+  }
+
+  .circle-link {
+    height: 40px;
+    width: 40px;
+    border-radius: 40px;
+    margin: 8px;
+    background-color: white;
+    border: 1px solid #eeeeee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    transition: 1s ease-out;
+  }
+
+  .circle-link:hover {
+    transform: translateY(-0.25rem);
+    box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
+  }
+
+  footer {
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    line-height: 20px;
+  }
+
+  footer a {
+    display: flex;
+    align-items: center;
+  }
+
+  .github-star-badge {
+    color: #24292e;
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    padding: 3px 10px;
+    border: 1px solid rgba(27,31,35,.2);
+    border-radius: 3px;
+    background-image: linear-gradient(-180deg,#fafbfc,#eff3f6 90%);
+    margin-left: 4px;
+    font-weight: 600;
+  }
+
+  .github-star-badge:hover {
+    background-image: linear-gradient(-180deg,#f0f3f6,#e6ebf1 90%);
+    border-color: rgba(27,31,35,.35);
+    background-position: -.5em;
+  }
+
+  .github-star-badge .material-icons {
+    height: 16px;
+    width: 16px;
+    margin-right: 4px;
+  }
+
+  svg#clouds {
+    position: fixed;
+    bottom: -160px;
+    left: -230px;
+    z-index: -10;
+    width: 1920px;
+  }
+
+  /* Responsive Styles */
+  @media screen and (max-width: 767px) {
+    .card-container > *:not(.circle-link) ,
+    .terminal {
+      width: 100%;
+    }
+
+    .card:not(.highlight-card) {
+      height: 16px;
+      margin: 8px 0;
+    }
+
+    .card.highlight-card span {
+      margin-left: 72px;
+    }
+
+    svg#rocket-smoke {
+      right: 120px;
+      transform: rotate(-5deg);
+    }
+  }
+
+  @media screen and (max-width: 575px) {
+    svg#rocket-smoke {
+      display: none;
+      visibility: hidden;
+    }
+  }
+</style>
+
+<!-- Toolbar -->
+<div class="toolbar" role="banner">
+  <img
+    width="40"
+    alt="Tree Logo"
+    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAD0AAAAoCAYAAABNefLBAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAVYSURBVHgB1Vntcds4EF3ImvvNmxQQXAXRVXBMBbErCF3BKXcFiC4gll0B5QpsVyC5AskVkPkfx2og2uwSSwuCwE9RcfJmKBLE4gEPWCxASEENxhjoAQxOFah/EGBEr7RkreldhoAren7YwPe7K7Vew28AVZZBYsMTOJmQ0NCTvSaxLDowSSSx+fMdib8g8Rn8wtgTTWIDGtkJZY2LdyQwU7kpikjFI7qg9CmLpY5ZDChvQ++V8YSLS/U0g18UO6LZlU9geEsiR35jXJHAlXlWekNC+Q6mAx7p/lEo6R3Gl+rbBfQIxLzTNV18z2DXCzOl1MKxD+V9JmU5vXoRbUb4ZAkvcxaJVJHAvAOuN7CZ+eYsd5SCk1jlgmEm4v+lsrov4dRgbTghAiN4QRfzzi2zGYk7t8rEdJtI8k+6Cm3ZsDAiwVNwBNOofpmqb2dQAZm/EYmPKQYkCCokNz9XsJmSF8T/45vHz+rpDjpCRusWjNg20NbzyC4/4J//8E0EeS9ycGIXVtkG4H6qnsbQECyexL2nxwvioAD4xxnPdZoCU/YiS0SKu3hbxkl53Ng5tBfMiOm6putc3P5vSZ/l7k2iU0OcR2F6VNeX6usVdAS7vOHjZW3Arp+Rm8cihOvSlrmmRn3x8XhsJYDCPZg5XereVRjKKGsTgU2A+HyAYIa9ZFEHjBHagwRHsCs4o+s9ByXJD6EhyDaxuYYcgDAfEbynuajbuHQTHLBh+eCkLwrBHRCCJXrAm49iGUL4HsPx0bQTtJNeQQdI5Nd2/UMSfMNipz9vF8VLmr0PYM/65LHbCV40yp1EE6ZOesvDPdJmnnQF14H7mHjsdqJ8A57Ekz/31BUpy0jTLTigRxuDGwP7e/pMrgI7+dQu5XBw/rykvIb96ZHbEM1fNgmP9Cn0CFlnfe+1Z72uhIcjxHZ4loE1mxMBz6ER9IukqMiGRGHeyGTQHW3amoG13OWQno/E7XqBjAT3rle4Zcf1LuuGySnT1FPYJkbEoK7iEPoRnQjfsqF9IGK8lyV27BGcesoEdRWOrcKNGlnDp60GzWsbsC2jrfTIY5OWjGgELVDM6WLDkNHFPT6FjpCG29PkgebSuqZMRDfeZ7OoUOpfisi6DuOd2gw6NJSFPkuvJVLZpAOPxv35WbsioJl3L/YOR9kX2jMeutpYLs64lQoSrAhCTvkQ992v0YeLdNassGfXRjMtxo7dTNp0ig2mTCMIKUpPp7g7+qHHnj0kQv/OZ9lbw44NR7gPqXWVYdnUQ14D3iNg3J4vZWCCXJuNAJ9OxG7wQhON+cDgzlNfKHW8k1dc9sFnWwYPBx9MrNpw2POsKeboTAE07j/B7TRJ3Yaif2rYXjWpaWeI1Zsb5mh3RoDbDUER3GzcSp4uKefap1b+BJtjjp740JIjgS7A/ZEPobyjUk/FqeRHnrxiy8qXb+SmTh0Hc/Qt+tZT4RxNrPDtrGIPh28JDCs6dezhOMXt1Kps80Gi0f/JN7byozrBFVxJDxxXQ+gfoZPmo1l7k+Ie+L2tajSYSB443B9doxoOGx+OIfqdk75x0tpJR9Ac2rkXaLNl1gPoH8GB+UfHMUa6Du4XV5c/+NbO8zW0wGuIfoDdHd7C/YvVBkdqzyG/zRG05TiGe9fB3RYmWLJPR7MbS3F/V9aGo/g2b/2pXBA0WbLmDWx863giSxGvrWMPT4q739bzCo5IOJZVHD9bdIAtj4DRWZKwwzFywfEa7g3yBcZHwDcNzNn2E5WJHY6sJcd5wdE2kGVg/h+2yVw8eircgzSa3XAGZq3m9X1klVmBCVhXZWdsDTn4v+yZzfEDkXi5lDCO8ysAAAAASUVORK5CYII="
+  />
+  <span>Tree</span>
+    <div class="spacer"></div>
+</div>
+
+<div class="content" role="main">
+<router-outlet></router-outlet>
+</div>

@@ -1,0 +1,58 @@
+<div class="container-fluid">
+    <h1 class="text-center">Login</h1>
+        <div class="row width100">
+          <div class="col">
+            <label>account id: </label>
+            <input type="text" class="form-control width25 " id="accountid" [(ngModel)]="accountId" placeholder="accountId" required name="accountid">
+          </div>
+        </div>
+        <div class="row">
+        <div class="col">
+          <label >amount:</label>
+          <input type="text" class="form-control width25" [(ngModel)]="amount" id="amount" placeholder="amount"
+            name="amount">
+        </div>
+          <div class="col">
+              <label >amountTo:</label>
+              <input type="text" class="form-control width25" [(ngModel)]="amountTo" id="amountTo" placeholder="amountTo"
+                name="amountTo">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <label >date from:</label>
+            <input type="text" class="form-control width25" [(ngModel)]="dateFrom" id="dateFrom" placeholder="date from, ex: 05/05/2019"
+              name="datefrom">
+          </div>
+          <div class="col">
+            <label >date to:</label>
+            <input type="text" class="form-control width25" [(ngModel)]="dateTo" id="dateTo" placeholder="date to, ex: 05/05/2019"
+              name="dateTo">
+          </div>
+        </div>
+        <br/>
+          <button (click)=getStatements() class="btn btn-success">Search</button>
+
+          <br/>
+          <div class="center row">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">First</th>
+                  <th scope="col">Last</th>
+                  <th scope="col">Handle</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let statement of statements; let i = index">
+                  <th scope="row">{{i + 1}}</th>
+                  <td>{{statement.id}}</td>
+                  <td>{{statement.accountId}}</td>
+                  <td>{{statement.dateField}}</td>
+                  <td>{{statement.amount}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+  </div>
