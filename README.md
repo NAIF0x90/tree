@@ -1,5 +1,6 @@
-- run the backend in ide or run the main file, make sure to install gradle dependencies.
-
+- open application.properties and change "spring.datasource.url" to database location.
+- install gradle dependencies.
+- run the backend in ide or run the main file
 - for the frontend download npm and install it
 - open the command line and run "npm install" on the main directory wich is /frontend
 - for runing the frontend run "npm start".
